@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "build:dev": "npm run build -- --mode=development --watch",
-    "start:dev": "nodemon server"
+    "start:dev": "npm run build:dev & nodemon server --ignore src/ --ignore dist/"
   },
   "keywords": [],
   "author": "",

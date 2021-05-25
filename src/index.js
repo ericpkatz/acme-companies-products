@@ -1,13 +1,14 @@
-const faker = require('faker');
+const dataGenerator = require('./dataGenerator');
+const renderer = require('./renderer');
 
-const names = new Array(50).fill('').map( _ => faker.company.companyName());
-const companies = names.map( name => {
-  const products = new Array(3).fill('').map(_ => faker.commerce.productName());
+const companies = dataGenerator.generateCompanies();
+const companyList = document.querySelector('#company-list');
 
-  return {
-    name,
-    products
-  };
-})
-console.log(companies);
-console.log('hello world');
+renderer.render(window.location.hash.slice(1)*1, companies, companyList);
+
+window.addEventListener('hashchange', ()=> {
+  const selected = window.location.hash.slice(1)*1;
+  renderer.render(selected, companies, companyList);
+});
+
+
